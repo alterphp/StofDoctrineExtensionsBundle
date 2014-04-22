@@ -14,6 +14,7 @@ DoctrineExtensions's features
 - **Sluggable** - urlizes your specified fields into single unique slug
 - **Timestampable** - updates date fields on create, update and even property change.
 - **Blameable** - updates string or assocation fields on create, update and even property change with a user name resp. reference.
+- **IpTraceable** - updates string on create, update and even property change with a client IP.
 - **Loggable** - helps tracking changes and history of objects, also supports version managment.
 - **Sortable** - makes any document or entity sortable
 - **Translator** - explicit way to handle translations
@@ -164,10 +165,10 @@ ready, use the form component as usual. Then, after you verify the form is valid
     ;
 
     if ($this->getRequest()->getMethod() === 'POST') {
-        $form->bind($this->getRequest());
+        $form->bindRequest($this->getRequest());
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getEntityManager();
 
             $em->persist($document);
 
